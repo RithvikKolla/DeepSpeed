@@ -232,6 +232,7 @@ def get_grad_norm(parameters, norm_type=2, mpu=None):
                     ) or is_model_parallel_parameter(p):
                     param_norm = p.grad.data.float().norm(norm_type)
                     total_norm += param_norm.item()**norm_type
+                    print(f"MP grad norm: {param_norm.item()}")
             else:
                 param_norm = p.grad.data.float().norm(norm_type)
                 total_norm += param_norm.item()**norm_type

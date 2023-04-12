@@ -134,6 +134,9 @@ class FP16_DeepSpeedZeroOptimizer_Stage1(object):
                     process_group = dist.new_group(ranks=shard_list)
                     if global_rank in shard_list:
                         shard_process_group = process_group
+                    
+                    print(f'Shard process group size = {shard_process_group.get_world_size()}')
+                    print(f'Ranks inside group = {shard_list}')
 
             self.dp_process_group = shard_process_group
 
